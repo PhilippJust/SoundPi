@@ -1,0 +1,43 @@
+- name: Add Mopidy Repository Key
+  apt_key:
+    url: https://apt.mopidy.com/mopidy.gpg
+    state: present
+
+- name: Add Mopidy Repository
+  apt_repository:
+    repo: deb https://apt.mopidy.com/ buster main contrib non-free
+    state: present
+
+- name: Add Mopidy DEV Repository
+  apt_repository:
+    repo: deb-src https://apt.mopidy.com/ buster main contrib non-free
+    state: present
+
+- name: Install Mopidy
+  apt:
+    pkg:
+      - mopidy
+      - mopidy-spotify
+    state: latest
+    update_cache: yes
+
+- name: Install Mopidy Extension
+  include_role:
+    name: geerlingguy.pip
+  vars:
+    pip_executable: pip3
+    pip_install_packages:
+      - name: Mopidy-Iris
+        state: latest
+
+- name: Configure Mopidy
+  template:
+    src: mopidy.conf.tpl
+    dest: /etc/mopidy/mopidy.conf
+    backup: yes
+
+- name: Enable Mopidy Service to Start on Boot
+  service:
+    name: mopidy
+    enabled: true
+    state: restarted
