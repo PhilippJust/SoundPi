@@ -1,0 +1,3 @@
+audio_sink: "alsasink"
+country: "DE"
+locale: "de_DE"

@@ -27,6 +27,17 @@
   vars:
     pip_executable: pip3
     pip_install_packages:
-    - name: Mopidy-Iris
-      state: latest
-  
+      - name: Mopidy-Iris
+        state: latest
+
+- name: Configure Mopidy
+  template:
+    src: mopidy.conf.tpl
+    dest: /etc/mopidy/mopidy.conf
+    backup: yes
+
+- name: Enable Mopidy Service to Start on Boot
+  service:
+    name: mopidy
+    enabled: true
+    state: restarted
