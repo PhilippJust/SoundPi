@@ -1,0 +1,19 @@
+# Based on https://www.hifiberry.com/docs/software/configuring-linux-3-18-x/
+
+- name: Backup /boot/config.txt
+  copy:
+    remote_src: yes
+    src: "/boot/config.txt"
+    dest: "/home/pi/config_{{ ansible_date_time.iso8601 }}.txt"
+
+- name: Disable onboard sound
+  lineinfile:
+      path: "/boot/config.txt"
+      line: "dtparam=audio=on"
+      state: absent
+
+- name: Configure device tree overlay file
+  lineinfile:
+      path: "/boot/config.txt"
+      line: "dtoverlay=hifiberry-dac"
+      state: present
