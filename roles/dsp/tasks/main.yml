@@ -1,0 +1,53 @@
+# Based on https://gist.github.com/arjunmenon/d279215f7c7a3258e377756f54e8ee52
+
+- name: Install Dependencies
+  apt:
+    pkg:
+      - build-essential
+      - pkg-config
+      - git
+      - ladspa-sdk
+      - fftw3
+      - fftw3-dev
+      - libzita-convolver3
+      - libzita-convolver-dev
+      - libsndfile1
+      - libsndfile1-dev
+      - libavcodec58
+      - libavcodec-dev
+      - libavformat58
+      - libavformat-dev
+      - libasound2
+      - libasound2-dev
+      - libao-common
+      - libao-dev
+      - libmad0
+      - libmad0-dev
+    state: latest
+    cache_valid_time: 3600
+
+- name: Checkout DSP Repository
+  git:
+    repo: "https://github.com/bmc0/dsp.git"
+    dest: "{{ dsp_temp_dir }}"
+    version: "{{ dsp_version }}"
+
+- name: Configure Build
+  shell:
+    cmd: ./configure --disable-ffmpeg
+    chdir: "{{ dsp_temp_dir }}"
+
+- name: Make
+  shell:
+    cmd: make
+    chdir: "{{ dsp_temp_dir }}"
+
+- name: Make Install
+  shell:
+    cmd: make install
+    chdir: "{{ dsp_temp_dir }}"
+
+- name: Remove temporary files
+  file:
+    state: absent
+    path: "{{ dsp_temp_dir }}"
