@@ -1,0 +1,1 @@
+effects_chain=gain -6.11 highpass 58 1.92q highshelf 90 1q -0.9 highshelf 600 1q -1.0 eq 2212 0.91q -4.8 highshelf 1012 1q -0.7 eq 4763 1q 1.0 eq 10k 2.04q -3.3
