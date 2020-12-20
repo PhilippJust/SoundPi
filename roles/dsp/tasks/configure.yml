@@ -1,0 +1,10 @@
+- name: Ensure that direcory exists
+  file:
+    path: /etc/ladspa_dsp
+    state: directory
+
+- name: Copy correction file
+  copy:
+    src: "{{ speaker }}.dsp"
+    dest: /etc/ladspa_dsp/config
+    mode: u=rw,g=r,o=r
