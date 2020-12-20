@@ -9,5 +9,5 @@ fi
 ansible-galaxy install -r requirements.yml
 ansible-playbook --inventory ${host}, \
     --user pi --ask-pass \
-    --extra-vars @my_config.yml \
+    --extra-vars @config.yml \
     soundpi.yml
