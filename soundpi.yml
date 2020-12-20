@@ -4,4 +4,6 @@
 
   roles:
     - role: dsp
+    - role: hifiberry_miniamp
+    - role: alsa
     - role: mopidy

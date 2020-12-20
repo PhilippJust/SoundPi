@@ -1,0 +1,5 @@
+- name: Copy alsa config
+  copy:
+    src: asound.conf
+    dest: /etc/asound.conf
+    mode: u=rw,g=r,o=r
