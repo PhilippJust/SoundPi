@@ -23,3 +23,6 @@ output = {{ audio_sink }}
 [iris]
 country = {{ country }}
 locale = {{ locale }}
+
+[podcast]
+browse_route = {{ podcasts_opml_url }}

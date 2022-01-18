@@ -13,15 +13,16 @@
     repo: deb-src https://apt.mopidy.com/ buster main contrib non-free
     state: present
 
-- name: Install Mopidy
+- name: Install Mopidy and apt packages
   apt:
     pkg:
       - mopidy
       - mopidy-spotify
+      - mopidy-podcast
     state: latest
     update_cache: yes
 
-- name: Install Mopidy Extension
+- name: Install Mopidy Extensions from pip
   include_role:
     name: geerlingguy.pip
   vars:
