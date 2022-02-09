@@ -1,0 +1,15 @@
+<opml version="2.0">
+    <body>
+        <outline text="Subscriptions" title="Subscriptions">
+            <outline type="rss" text="Hi Baby!" xmlUrl='https://hi-baby-der-mamapodcast.podigee.io/feed/mp3' />
+            <outline type="rss" text="Geschichten aus der Geschichte" xmlUrl='https://www.geschichte.fm/feed/mp3/' />
+            <outline type="rss" text="Das Politikteil" xmlUrl='https://daspolitikteil.podigee.io/feed/mp3' />
+            <outline type="rss" text="Einhundert - Storys mit Alice Hasters" xmlUrl='https://www.deutschlandfunknova.de/podcast/einhundert' />
+            <outline type="rss" text="Deep Talk" xmlUrl='https://www.deutschlandfunknova.de/podcast/deep-talk' />
+            <outline type="rss" text="Mal angenommen" xmlUrl='https://www.tagesschau.de/multimedia/podcasts/mal-angenommen-feed-101.xml' />
+            <outline type="rss" text="Developer Tea" xmlUrl='https://feeds.simplecast.com/dLRotFGk' />
+            <outline type="rss" text="Das gewünschteste Wunschkind" xmlUrl='https://rss.art19.com/das-gewuenschteste-wunschkind' />
+            <outline type="rss" text="The Overflow" xmlUrl='https://stackoverflow.blog/newsletter/feed' />
+        </outline>
+    </body>
+</opml>

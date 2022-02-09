@@ -8,6 +8,3 @@ spotify_password: ""
 # on how to get the right values here
 spotify_client_id: ""
 spotify_client_secret: ""
-
-# Where should the podcasts be loaded from?
-podcasts_opml_url: ""

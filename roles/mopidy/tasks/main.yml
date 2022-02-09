@@ -31,6 +31,12 @@
       - name: Mopidy-Iris
         state: latest
 
+- name: Copy podcast source file
+  copy:
+    src: "Podcasts.opml"
+    dest: /etc/mopidy/podcast
+    mode: u=rw,g=r,o=r
+
 - name: Configure Mopidy
   template:
     src: mopidy.conf.tpl
