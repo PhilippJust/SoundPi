@@ -1,0 +1,56 @@
+- name: Copy SpotifyD binary
+  copy:
+    src: spotifyd
+    dest: /usr/bin/spotifyd
+    mode: u=rwx,g=rx,o=rx
+    force: no
+
+- name: Ensure config dir exists
+  file:
+    path: /etc/xdg/spotifyd
+    state: directory
+
+- name: Copy config file
+  template:
+    src: spotifyd.conf.tpl
+    backup: yes
+    dest: /etc/xdg/spotifyd/spotifyd.conf
+    mode: u=rw,g=r,o=r
+    force: no 
+
+- name: Install Dependencies
+  apt:
+    pkg:
+      - ufw
+    state: latest
+    cache_valid_time: 3600
+
+- name: Open zeroconf tcp port
+  community.general.ufw:
+    rule: allow
+    port: 2048
+    proto: 'tcp'
+
+- name: Open udp port
+  community.general.ufw:
+    rule: allow
+    port: 5353
+    proto: 'udp'
+
+- name: Copy Service File
+  copy:
+    src: spotifyd.service
+    dest: /etc/systemd/user/spotifyd.service
+    force: no
+
+- name: Enable lingering
+  command:
+    cmd: loginctl enable-linger pi
+
+- name: Enable and start service
+  command:
+    name: spotifyd
+    enabled: yes
+    state: started
+    scope: user
+    daemon_reload: true
