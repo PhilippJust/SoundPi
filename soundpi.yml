@@ -6,4 +6,5 @@
     - role: dsp
     - role: hifiberry_miniamp
     - role: alsa
+    - role: spotifyd
     - role: mopidy
