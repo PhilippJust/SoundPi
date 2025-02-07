@@ -5,19 +5,18 @@
 
 - name: Add Mopidy Repository
   apt_repository:
-    repo: deb https://apt.mopidy.com/ buster main contrib non-free
+    repo: deb https://apt.mopidy.com/ bookworm main contrib non-free
     state: present
 
 - name: Add Mopidy DEV Repository
   apt_repository:
-    repo: deb-src https://apt.mopidy.com/ buster main contrib non-free
+    repo: deb-src https://apt.mopidy.com/ bookworm main contrib non-free
     state: present
 
 - name: Install Mopidy and apt packages
   apt:
     pkg:
-      - mopidy
-      - mopidy-spotify
+      - mopidy      
       - mopidy-podcast
     state: latest
     update_cache: yes
@@ -29,6 +28,8 @@
     pip_executable: pip3
     pip_install_packages:
       - name: Mopidy-Iris
+        state: latest
+      - name: Mopidy-Cd
         state: latest
 
 - name: Copy podcast source file
@@ -48,3 +49,15 @@
     name: mopidy
     enabled: true
     state: restarted
+
+- name: Allow mopidy port  
+  community.general.ufw:
+    rule: allow
+    port: '6680'
+    proto: 'tcp'
+
+- name: Add mopidy to cdRom group
+  user:
+    name: mopidy
+    groups: cdrom
+    append: yes

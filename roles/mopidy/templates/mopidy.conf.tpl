@@ -10,13 +10,6 @@ enabled = true
 hostname = ::
 port = 6680
 
-[spotify]
-username = {{ spotify_user }}
-password = {{ spotify_password }}
-client_id = {{ spotify_client_id }}
-client_secret = {{ spotify_client_secret }}
-bitrate = 320
-
 [audio]
 output = {{ audio_sink }}
 
