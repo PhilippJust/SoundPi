@@ -7,15 +7,15 @@
       - pkg-config
       - git
       - ladspa-sdk
-      - fftw3
-      - fftw3-dev
-      - libzita-convolver3
-      - libzita-convolver-dev
+      - libfftw3-bin
+      - libfftw3-dev
+      # - libzita-convolver3
+      # - libzita-convolver-dev
       - libsndfile1
       - libsndfile1-dev
-      - libavcodec58
+      - libavcodec59
       - libavcodec-dev
-      - libavformat58
+      - libavformat59
       - libavformat-dev
       - libasound2
       - libasound2-dev
