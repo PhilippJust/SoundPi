@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Installation of mopidy-podcasts
+- SpotifyD as new way to use spotify
+
+### Removed
+
+- mopidy-spotify as it is not supported anymore
 
 ## [1.0.0] - 2020-12-27
 
