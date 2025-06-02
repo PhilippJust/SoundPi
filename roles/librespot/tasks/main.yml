@@ -1,0 +1,67 @@
+- name: Copy Librespot binary
+  copy:
+    src: librespot
+    dest: /usr/bin/librespot
+    mode: u=rwx,g=rx,o=rx
+    force: no
+
+- name: Install Dependencies
+  apt:
+    pkg:
+      - ufw
+    state: latest
+    cache_valid_time: 3600
+
+- name: Open zeroconf tcp port
+  community.general.ufw:
+    rule: allow
+    port: 2049
+    proto: 'tcp'
+
+- name: Open udp port
+  community.general.ufw:
+    rule: allow
+    port: 5353
+    proto: 'udp'
+
+- name: Copy Service File
+  template:
+    src: librespot.service.tpl
+    backup: yes
+    dest: /etc/systemd/user/librespot.service
+    mode: u=rw,g=r,o=r
+    force: no
+
+- name: Enable and start service
+  service:
+    name: librespot
+    enabled: yes
+    state: started
+    daemon_reload: true
+
+- name: Copy librespot watch script
+  copy:
+    src: librespot-watcher.sh
+    dest: /usr/local/bin/librespot-watcher.sh
+    mode: u=rwx,g=rx,o=rx
+    force: no
+
+- name: Copy librespot watch service file
+  copy:
+    src: librespot-watcher.service
+    dest: /etc/systemd/user/librespot-watcher.service
+    mode: u=rw,g=r,o=r
+    force: no
+
+- name: Copy timer unit file
+  copy:
+    src: librespot-watcher.timer
+    dest: /etc/systemd/user/librespot-watcher.timer
+    mode: u=rw,g=r,o=r
+    force: no
+
+- name: Enable librespot-watcher service
+  systemd:
+    name: librespot-watcher.timer
+    enabled: yes
+    daemon_reload: true

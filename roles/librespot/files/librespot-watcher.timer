@@ -1,0 +1,10 @@
+[Unit]
+Description=Startet Librespot Watcher Script alle 5 Minuten
+
+[Timer]
+OnBootSec=2min
+OnCalendar=*:0/5
+Unit=librespot-watcher.service
+
+[Install]
+WantedBy=default.target

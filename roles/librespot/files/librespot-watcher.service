@@ -1,0 +1,6 @@
+[Unit]
+Description=Startet Librespot Watcher Script
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/librespot-watcher.sh
