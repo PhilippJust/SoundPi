@@ -1,0 +1,20 @@
+- name: Copy playcd service file
+  copy:
+    src: playcd.service
+    dest: /etc/systemd/system/playcd.service
+    mode: u=rw,g=r,o=r
+    force: no
+
+- name: Copy Udev rules file
+  copy:
+    src: autoplaycd.rule
+    dest: /etc/udev/rules.d/10-cd-autoplay.rules
+    mode: u=rw,g=r,o=r
+    force: no
+
+# Reload udev rules
+- name: Reload udev rules
+  ans2dev.general.udevadm_control:
+    log_level: debug
+  register: result
+

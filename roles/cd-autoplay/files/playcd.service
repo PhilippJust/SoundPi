@@ -1,0 +1,6 @@
+[Unit]
+Description=Spielt die eingelegte CD
+
+[Service]
+Type=oneshot
+ExecStart=mplayer -cdrom-device /dev/sr0 cdda:// -cache 5000
