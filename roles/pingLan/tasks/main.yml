@@ -1,0 +1,33 @@
+- name: Install nmap
+  apt:
+    pkg:
+      - nmap
+    state: latest
+
+- name: Copy ping all script
+  copy:
+    src: ping-scan-hosts.sh
+    dest: /usr/local/bin/ping-scan-hosts.sh
+    mode: u=rwx,g=rx,o=rx
+    force: no
+
+- name: Copy ping all service file
+  copy:
+    src: ping-scan-hosts.service
+    dest: /etc/systemd/user/ping-scan-hosts.service
+    mode: u=rw,g=r,o=r
+    force: no
+
+- name: Copy timer unit file
+  copy:
+    src: ping-scan-hosts.timer
+    dest: /etc/systemd/user/ping-scan-hosts.timer
+    mode: u=rw,g=r,o=r
+    force: no
+
+- name: Enable ping-scan-hosts service
+  systemd:
+    name: ping-scan-hosts.timer
+    enabled: yes
+    daemon_reload: true
+

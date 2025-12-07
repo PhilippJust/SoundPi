@@ -1,0 +1,10 @@
+[Unit]
+Description=Startet Ping Host Script alle 2 Minuten
+
+[Timer]
+OnBootSec=1s
+OnCalendar=*:0/2
+Unit=ping-scan-hosts.service
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,6 @@
+[Unit]
+Description=Pingt einmal alle Devices im LAN
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/ping-scan-hosts.sh
